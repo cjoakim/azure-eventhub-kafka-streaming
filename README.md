@@ -53,6 +53,14 @@ Demo app consists of:
   <img src="img/azure-streaming-demo.png">
 </p>
 
+---
+
+### Alternative EventHub Pipeline 
+
+<p align="center">
+  <img src="img/eh-pipeline.png">
+</p>
+
 ### Provisioning the Azure Resources for this Demonstration
 
 See the bash/az scripts in the **automation/az/** directory.

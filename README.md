@@ -1,7 +1,5 @@
 # azure-eventhub-kafka-streaming
 
-Demonstration streaming application using Azure Event Hubs with Kafka API.
-
 ## Part 1: Customer Use Cases 
 
 - Augment current batch processing with streaming solution for n-number of sources

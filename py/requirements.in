@@ -1,0 +1,15 @@
+# Chris Joakim, Microsoft, 2020/06/12
+# These libraries are sorted alphabetically
+# See venv.sh for: pip install azure-storage-file-datalake --pre
+
+arrow
+avro-python3
+azure-cosmos==4.0.0
+azure-eventhub
+azure-storage-blob
+confluent-kafka
+docopt
+fastavro
+pandas
+pyarrow
+requests

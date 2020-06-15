@@ -1,3 +1,20 @@
+# cj
+.idea/
+.vscode/
+
+automation/az/out
+
+py/bin/
+py/include/
+py/lib/
+py/lib64
+py/man/
+py/share/
+py/tmp/
+py/LICENSE.txt
+
+tmp/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

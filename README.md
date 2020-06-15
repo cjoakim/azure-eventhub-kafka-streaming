@@ -55,7 +55,9 @@ Demo app consists of:
 
 ---
 
-### Alternative EventHub Pipeline 
+### Alternative EventHub Pipeline
+
+EventHubs and Azure Functions can be **pipelined** for functionality similar to **Kafka Streams** Java code.
 
 <p align="center">
   <img src="img/eh-pipeline.png">

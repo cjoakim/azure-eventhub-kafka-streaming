@@ -1,6 +1,6 @@
-# azure-eh-kafka-alpha
+# azure-eventhub-kafka-streaming
 
-An initial/alpha repo for Azure Event Hubs, Kafka, Stream Analytics, Databricks
+Demonstration streaming application using Azure Event Hubs with Kafka API.
 
 ## Part 1: Customer Use Cases 
 

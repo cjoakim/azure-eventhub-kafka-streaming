@@ -26,7 +26,7 @@
 - [Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)
 - [Azure Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction)
 - [Azure Databricks with Spark Streaming](https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-stream-from-eventhubs)
-- [Azure Synapse with Spark Streaming](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is)
+- [Azure Synapse with Spark Streaming](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is) (Preview)
 - [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
 - [Azure CosmosDB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
 

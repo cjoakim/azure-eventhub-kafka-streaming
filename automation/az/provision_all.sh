@@ -7,21 +7,21 @@
 # az login
 
 echo 'extensions'
-./extensions.sh
+./extensions.sh install
 
 echo '=== eventhubs'
-./eventhubs.sh
+./eventhubs.sh recreate
 
 echo '=== storage'
-./storage.sh
+./storage.sh create
 
 echo '=== adl'
-./adl.sh
+./adl.sh create
 
 echo '=== cosmos_sql'
-./cosmos_sql.sh
+./cosmos_sql.sh create
 
 echo '=== stream_analytics'
-./stream_analytics.sh
+./stream_analytics.sh create
 
 echo '=== done'

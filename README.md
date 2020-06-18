@@ -70,15 +70,15 @@ and other service configuration.
 Execute each of these scripts in turn:
 
 ```
-$cd automation/az
+$ cd automation/az
+$ mkdir out
 
-./extensions.sh           <-- installs extensions to the az cli program
-
-./adl.sh                  <-- provisions datalake gen 2
-./storage.sh              <-- provisions blob storage
-./eventhubs.sh            <-- provisions eventhubs with kafka api enabled, with dev hub
-./cosmos_sql.sh           <-- provisions cosmosdb with sql api and events collection
-./stream_analytics.sh     <-- provisions an empty stream analytics account (no code)
+$ ./extensions.sh install        <-- installs extensions to the az cli program
+$ ./eventhubs.sh recreate        <-- provisions eventhubs with kafka api enabled, with dev hub
+$ ./adl.sh create                <-- provisions datalake gen 2
+$ ./storage.sh create            <-- provisions blob storage
+$ ./cosmos_sql.sh create         <-- provisions cosmosdb with sql api and events collection
+$ ./stream_analytics.sh create   <-- provisions an empty stream analytics account (no code)
 ```
 
 #### Provisioning an Azure EventHubs account to enable Kafka

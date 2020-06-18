@@ -25,6 +25,7 @@
 - [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
 - [Azure Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)
 - [Azure Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction)
+- [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/stream-analytics/machine-learning-udf)
 - [Azure Databricks with Spark Streaming](https://docs.microsoft.com/en-us/azure/azure-databricks/databricks-stream-from-eventhubs)
 - [Azure Synapse with Spark Streaming](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is) (Preview)
 - [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)

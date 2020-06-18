@@ -79,6 +79,8 @@ $ ./adl.sh create                <-- provisions datalake gen 2
 $ ./storage.sh create            <-- provisions blob storage
 $ ./cosmos_sql.sh create         <-- provisions cosmosdb with sql api and events collection
 $ ./stream_analytics.sh create   <-- provisions an empty stream analytics account (no code)
+  - or -
+$ ./provision_all.sh             <-- provision all of the above
 ```
 
 #### Provisioning an Azure EventHubs account to enable Kafka

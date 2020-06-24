@@ -201,6 +201,8 @@ to add pk, seq, timestamp, and epoch attributes.
 ### Query the Messages in CosmosDB
 
 ```
+select * FROM c where c.epoch > 1593034855
+
 select * from c where c.city_name = "Raleigh" and c.epoch >= 1592251781
 ```
 

@@ -88,6 +88,9 @@ $ ./provision_all.sh             <-- provision all of the above
 
 Script **eventhubs.sh** specifies **--enable-kafka** to be true.
 
+Note: This EventHub instance will support **both** types of clients - 
+**Kafka API** and the **Microsoft SDKs**.
+
 ```
     az eventhubs namespace create \
         --name $eventhubs_namespace \
@@ -125,10 +128,9 @@ This can be configured in Azure Portal in your EventHub account as shown here:
 
 ### Create the Azure Stream Analytics Job
 
-Easily consume the EventHub stream of data, and save it to both CosmosDB and Data Lake
-with only two lines of code.  Simply define the input (eventhub) and the outputs (adl, cosmos).
-
-Define the **Job** in a SQL-like syntax:
+Easily consume the EventHub stream of data, and save it to **both** CosmosDB and Data Lake
+with only two lines of code.  Simply define the **input (eventhub)** and the **outputs (adl, cosmos)**,
+then define the **Job** in a SQL-like syntax:
 
 ```
 SELECT * INTO adl FROM eventhub
@@ -162,17 +164,29 @@ $ source bin/activate
 
 #### Send messages to EventHub using the Kafka Producer API
 
-Event Hubs supports Apache Kafka protocol 1.0 and later, and works with your existing Kafka applications, including MirrorMaker.
+Event Hubs supports **Apache Kafka protocol 1.0 and later**, and works with your existing Kafka applications, including MirrorMaker.
 
 The following sends 100 messages in a randomized sequence, with Python and the **confluent-kafka**
-library.
+library on PyPI.
 
 ```
 $ python eventhub_kafka.py 1 100
 
-sending message: {"location": {"type": "Point", "coordinates": [-78.6388, 35.7719]}, "postal_cd": "27621", "country_cd": "US", "city_name": "Raleigh", "state_abbrv": "NC", "latitude": 35.7719, "longitude": -78.6388, "pk": "27621", "seq": 1, "timestamp": "2020-06-15 20:09:41", "epoch": 1592251781}
-Message delivered to; topic: dev, partition: 0, offset: 1368
+...
+sending message: {"location": {"type": "Point", "coordinates": [-80.733927, 35.303614]}, "postal_cd": "28223", "country_cd": "US", "city_name": "Charlotte", "state_abbrv": "NC", "latitude": 35.303614, "longitude": -80.733927, "pk": "28223", "seq": 1, "timestamp": "2020-06-25 15:46:20", "epoch": 1593099980, "sender": "python_kafka_sdk"}
+Message delivered to; topic: dev, partition: 0, offset: 248
+...
+```
 
+Likewise, you can use the **Microsoft SDK** to send messages to the same EventHub with the
+native EventHub protocol rather than the Kafka protocol.  This uses the **azure-eventhub**
+library on PyPI.
+
+```
+$ python eventhub_sdk.py 1 100
+
+...
+sending message: {"location": {"type": "Point", "coordinates": [-82.5545, 35.6006]}, "postal_cd": "28816", "country_cd": "US", "city_name": "Asheville", "state_abbrv": "NC", "latitude": 35.6006, "longitude": -82.5545, "pk": "28816", "seq": 1, "timestamp": "2020-06-25 15:47:35", "epoch": 1593100055, "sender": "python_ms_sdk"}
 ...
 ```
 
@@ -201,12 +215,10 @@ to add pk, seq, timestamp, and epoch attributes.
 ### Query the Messages in CosmosDB
 
 ```
-select * FROM c where c.epoch > 1593034855
+select * FROM c where c.epoch >= 1593099980 and c.sender = 'python_kafka_sdk'
+select * FROM c where c.epoch >= 1593099980 and c.sender = 'python_ms_sdk'
 
-select * from c where c.city_name = "Raleigh" and c.epoch >= 1592251781
-
-select c.id, c.city_name, c.sender FROM c where c.epoch > 1593097748
-
+select c.id, c.city_name, c.sender FROM c where c.epoch > 1593099980
 ```
 
 <p align="center">
@@ -220,15 +232,13 @@ Download an avro file from Azure Blob Storage (i.e. - data/54.avro).
 See **avro.py** in the py/ directory.
 
 ```
-$ python avro.py data/54.avro
+$ python avro.py data/24.avro
 
-Displaying the messages in Avro file: data/54.avro
+Displaying the messages in Avro file: data/24.avro
 
-{'SequenceNumber': 66, 'Offset': '14280', 'EnqueuedTimeUtc': '6/12/2020 6:32:34 PM', 'SystemProperties': {}, 'Properties': {}, 'Body': b'{"location": {"type": "Point", "coordinates": [-77.5171, 35.5857]}, "postal_cd": "27811", "country_cd": "US", "city_name": "Bellarthur", "state_abbrv": "NC", "latitude": 35.5857, "longitude": -77.5171, "seq": 1, "timestamp": "2020-06-12 18:32:34", "epoch": 1591986754}'}
+{'SequenceNumber': 252, 'Offset': '4295015048', 'EnqueuedTimeUtc': '6/25/2020 3:47:29 PM', 'SystemProperties': {}, 'Properties': {}, 'Body': b'{"location": {"type": "Point", "coordinates": [-76.766436, 34.738947]}, "postal_cd": "28557", "country_cd": "US", "city_name": "Morehead City", "state_abbrv": "NC", "latitude": 34.738947, "longitude": -76.766436, "pk": "28557", "seq": 1, "timestamp": "2020-06-25 15:47:27", "epoch": 1593100047, "sender": "python_ms_sdk"}'}
 
-{'SequenceNumber': 67, 'Offset': '14680', 'EnqueuedTimeUtc': '6/12/2020 6:32:35 PM', 'SystemProperties': {}, 'Properties': {}, 'Body': b'{"location": {"type": "Point", "coordinates": [-80.8434, 35.2267]}, "postal_cd": "28222", "country_cd": "US", "city_name": "Charlotte", "state_abbrv": "NC", "latitude": 35.2267, "longitude": -80.8434, "seq": 1, "timestamp": "2020-06-12 18:32:35", "epoch": 1591986755}'}
-
-{'SequenceNumber': 68, 'Offset': '15080', 'EnqueuedTimeUtc': '6/12/2020 6:32:36 PM', 'SystemProperties': {}, 'Properties': {}, 'Body': b'{"location": {"type": "Point", "coordinates": [-81.108086, 35.455008]}, "postal_cd": "28080", "country_cd": "US", "city_name": "Iron Station", "state_abbrv": "NC", "latitude": 35.455008, "longitude": -81.108086, "seq": 1, "timestamp": "2020-06-12 18:32:36", "epoch": 1591986756}'}
+{'SequenceNumber': 253, 'Offset': '4295015424', 'EnqueuedTimeUtc': '6/25/2020 3:47:30 PM', 'SystemProperties': {}, 'Properties': {}, 'Body': b'{"location": {"type": "Point", "coordinates": [-75.485005, 35.474875]}, "postal_cd": "27972", "country_cd": "US", "city_name": "Salvo", "state_abbrv": "NC", "latitude": 35.474875, "longitude": -75.485005, "pk": "27972", "seq": 1, "timestamp": "2020-06-25 15:47:30", "epoch": 1593100050, "sender": "python_ms_sdk"}'}
 ```
 
 ```

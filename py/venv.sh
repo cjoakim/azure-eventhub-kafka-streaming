@@ -36,8 +36,6 @@ create_venv() {
     echo 'pip3 install requirements.txt ...'
     pip3 install -r requirements.txt
 
-    #pip install azure-storage-file-datalake --pre
-
     pip3 list
 
     echo 'next: source bin/activate ; python3 --version'

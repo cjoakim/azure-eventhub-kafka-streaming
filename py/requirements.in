@@ -1,6 +1,5 @@
 # Chris Joakim, Microsoft, 2020/06/25
 # These libraries are sorted alphabetically
-# See venv.sh for: pip install azure-storage-file-datalake --pre
 
 arrow
 avro-python3

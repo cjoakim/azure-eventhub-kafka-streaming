@@ -2,7 +2,7 @@
 
 # Bash shell script to delete or create the Python Virtual Environment.
 # Requires Python 3; version 3.7 or higher recommended.
-# Chris Joakim, Microsoft, 2020/06/12
+# Chris Joakim, Microsoft, 2020/06/25
 
 display_help() {
     echo "script options:"
@@ -36,7 +36,7 @@ create_venv() {
     echo 'pip3 install requirements.txt ...'
     pip3 install -r requirements.txt
 
-    pip install azure-storage-file-datalake --pre
+    #pip install azure-storage-file-datalake --pre
 
     pip3 list
 

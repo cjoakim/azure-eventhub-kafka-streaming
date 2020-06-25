@@ -11,6 +11,8 @@
 # This is a modified version of the source code at: 
 # https://github.com/Azure/azure-event-hubs-for-kafka/tree/master/quickstart/python
 #
+# Python EventHub message sending client using the Confluent Kafka SDK
+# (confluent-kafka @ PyPI) and not the Microsoft SDK.
 # Chris Joakim, Microsoft, 2020/06/25
 # Usage:
 # $ python eventhub_kafka.py <send-flag-int> <max-messages-int>
@@ -42,6 +44,7 @@ def random_zipcode(zipcodes_array):
     zipcode['seq'] = send_messages
     zipcode['timestamp'] = utc.format('YYYY-MM-DD HH:mm:s')
     zipcode['epoch'] = utc.timestamp
+    zipcode['sender'] = 'python_kafka_sdk'
     return zipcode
 
 def pause(message, seconds):
@@ -65,7 +68,7 @@ if __name__ == '__main__':
     print('eventhub server:    {}'.format(eh_server))
     print('eventhub topic:     {}'.format(eh_topic))
     print('eventhub conn_str:  {}'.format(eh_conn_str))
-    print('zipcodes loaded:    {}'.format(len(zipcodes)))
+    print('# zipcodes loaded:  {}'.format(len(zipcodes)))
 
     conf = {
         'bootstrap.servers': eh_server, 

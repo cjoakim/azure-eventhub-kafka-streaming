@@ -204,6 +204,9 @@ to add pk, seq, timestamp, and epoch attributes.
 select * FROM c where c.epoch > 1593034855
 
 select * from c where c.city_name = "Raleigh" and c.epoch >= 1592251781
+
+select c.id, c.city_name, c.sender FROM c where c.epoch > 1593097748
+
 ```
 
 <p align="center">

@@ -11,11 +11,11 @@
 # This is a modified version of the source code at: 
 # https://github.com/Azure/azure-event-hubs-for-kafka/tree/master/quickstart/python
 #
-# Chris Joakim, Microsoft, 2020/06/12
-# Use:
-# $ python eventhub.py <send-flag-int> <max-messages-int>
-# $ python eventhub.py 0 10      <-- just generate and display but not send 10 messages
-# $ python eventhub.py 1 100     <-- generate send 100 messages to the Kafka EventHub
+# Chris Joakim, Microsoft, 2020/06/25
+# Usage:
+# $ python eventhub_kafka.py <send-flag-int> <max-messages-int>
+# $ python eventhub_kafka.py 0 10      <-- just generate and display but not send 10 messages
+# $ python eventhub_kafka.py 1 100     <-- generate send 100 messages to the Kafka EventHub
 
 import arrow
 import json

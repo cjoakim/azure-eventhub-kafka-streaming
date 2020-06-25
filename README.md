@@ -168,7 +168,7 @@ The following sends 100 messages in a randomized sequence, with Python and the *
 library.
 
 ```
-$ python eventhub.py 1 100
+$ python eventhub_kafka.py 1 100
 
 sending message: {"location": {"type": "Point", "coordinates": [-78.6388, 35.7719]}, "postal_cd": "27621", "country_cd": "US", "city_name": "Raleigh", "state_abbrv": "NC", "latitude": 35.7719, "longitude": -78.6388, "pk": "27621", "seq": 1, "timestamp": "2020-06-15 20:09:41", "epoch": 1592251781}
 Message delivered to; topic: dev, partition: 0, offset: 1368

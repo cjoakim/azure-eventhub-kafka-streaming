@@ -13,7 +13,7 @@
 #
 # Python EventHub message sending client using the Confluent Kafka SDK
 # (confluent-kafka @ PyPI) and not the Microsoft SDK.
-# Chris Joakim, Microsoft, 2020/06/25
+# Chris Joakim, Microsoft, 2020/07/01
 # Usage:
 # $ python eventhub_kafka.py <send-flag-int> <max-messages-int>
 # $ python eventhub_kafka.py 0 10      <-- just generate and display but not send 10 messages
@@ -61,6 +61,7 @@ if __name__ == '__main__':
     eh_topic      = os.environ['AZURE_STREAMPOC_EVENTHUB_HUBNAME']
     eh_server     = '{}.servicebus.windows.net:9093'.format(eh_namespace)
     zipcodes      = read_nc_zipcodes_data()
+    start_epoch   = arrow.utcnow().timestamp
 
     print('send_messages:      {}'.format(send_messages))
     print('max_messages:       {}'.format(max_messages))
@@ -108,7 +109,9 @@ if __name__ == '__main__':
                 sys.stderr.write('Exception encountered')
                 traceback.print_exc(file=sys.stderr)
 
-        pause('pausing 10 seconds before flushing messages & exiting', 10)
+        pause('pausing 5 seconds before flushing messages & exiting', 5)
+        print("query cosmosdb with: SELECT * FROM c where c.sender = '{}' and c.epoch >= {}".format(
+            'python_kafka_sdk', start_epoch))
         p.flush()
         print('exiting')
     else: 

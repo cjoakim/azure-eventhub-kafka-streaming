@@ -1,7 +1,7 @@
 
 # Python EventHub message sending client using the Microsoft SDK
 # (azure-eventhub @ PyPI) and not Kafka.
-# Chris Joakim, Microsoft, 2020/06/25
+# Chris Joakim, Microsoft, 2020/07/01
 # Usage:
 # $ python eventhub_sdk.py <send-flag-int> <max-messages-int>
 # $ python eventhub_sdk.py 0 10      <-- just generate and display but not send 10 messages
@@ -49,6 +49,7 @@ if __name__ == '__main__':
     eh_namespace  = os.environ['AZURE_STREAMPOC_EVENTHUB_NAMESPACE'] 
     eh_hubname    = os.environ['AZURE_STREAMPOC_EVENTHUB_HUBNAME']
     zipcodes      = read_nc_zipcodes_data()
+    start_epoch   = arrow.utcnow().timestamp
 
     print('send_messages:      {}'.format(send_messages))
     print('max_messages:       {}'.format(max_messages))
@@ -77,8 +78,10 @@ if __name__ == '__main__':
 
         if eh_client:
             eh_client.close()
-        pause('pausing 10 seconds before flushing messages & exiting', 10)
-        print('exiting')
+            time.sleep(2)
+
+        print("query cosmosdb with: SELECT * FROM c where c.sender = '{}' and c.epoch >= {}".format(
+            'python_ms_sdk', start_epoch))
     else: 
         while msg_count < max_messages:
             msg_count = msg_count + 1

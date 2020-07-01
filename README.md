@@ -140,6 +140,18 @@ SELECT * INTO cosmos FROM eventhub
   <img src="img/stream-analytics-job.png">
 </p>
 
+#### JavaScript User-Defined Functions
+
+- [UDFs](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-javascript-user-defined-functions)
+
+#### JavaScript User-Defined Aggregates & TumblingWindows
+
+- [Aggregates](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-javascript-user-defined-aggregates)
+
+#### Integrate with Azure Machine Learning
+
+- [AML](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-machine-learning-integration-tutorial)
+
 ---
 
 ### Client Computer Setup

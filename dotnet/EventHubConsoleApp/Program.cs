@@ -79,6 +79,15 @@ namespace EventHubConsoleApp
             while (randomList.Count < messageCount) {
                 int randomIndex = random.Next(0, maxIndex);
                 JObject zipcode = allZipcodes[randomIndex];
+
+                // Remove these attributes so that the Adds don't faile
+                zipcode.Remove("pk");
+                zipcode.Remove("seq");
+                zipcode.Remove("index");
+                zipcode.Remove("timestamp");
+                zipcode.Remove("epoch");
+                zipcode.Remove("sender");
+
                 zipcode.Add("pk", zipcode.Property("postal_cd").Value);
                 zipcode.Add("seq", randomList.Count + 1);
                 zipcode.Add("index", randomIndex);

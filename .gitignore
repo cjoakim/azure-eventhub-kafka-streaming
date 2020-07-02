@@ -4,6 +4,7 @@
 
 automation/az/out
 
+dotnet/EventHubConsoleApp/bin/
 dotnet/EventHubConsoleApp/obj/
 
 py/bin/

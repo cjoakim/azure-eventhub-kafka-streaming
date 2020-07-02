@@ -224,6 +224,26 @@ to add pk, seq, timestamp, and epoch attributes.
   },
 ```
 
+#### But wait, .Net Core, too
+
+```
+$ cd dotnet
+$ cd EventHubConsoleApp 
+
+$ dotnet --version
+3.1.301
+
+$ dotnet build
+Build succeeded.
+
+$ dotnet run true 10 
+...
+Sending message batch of 10
+The batch of messages has been sent
+Query CosmosDB with: SELECT * FROM c where c.sender = 'dotnet_core_sdk' and c.epoch >= 1593718632
+```
+
+
 ### Query the Messages in CosmosDB
 
 ```

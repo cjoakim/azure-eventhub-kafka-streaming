@@ -39,14 +39,20 @@
 
 ## Part 3: Demonstration
 
-Demo app consists of:
-1) Python Kafka Producer
-2) Azure EventHub with Kafka Enabled
-3) Azure Blob Storage for EventHub message Capture
-4) Azure Stream Analytics to Consume to EventHub
-5) Azure CosmosDB - Sink for Azure Stream Analytics
-6) Azure Datalake Gen2 - Sink for Azure Stream Analytics
-7) (TODO) Azure Databricks - Alternative EventHub stream consumer
+Demo app consists of (the solid lines in the diagram above):
+1) Azure Command-Line Interface (CLI) program **az**
+2) Three different EventHub Message Producers
+   - Python Kafka Protocol Message Producer
+   - Python Native Protocol Message Producer
+   - DotNet Core Native Protocol Message Producer
+3) Azure EventHub with Kafka Enabled
+4) Azure Blob Storage for EventHub message Capture
+5) Azure Stream Analytics to Consume to EventHub
+6) Azure CosmosDB - Sink for Azure Stream Analytics
+   - Queries
+   - Geo Queries (GeoJSON)
+7) Azure Datalake Gen2 - Sink for Azure Stream Analytics
+8) (TODO) Azure Databricks - Alternative EventHub stream consumer
 
 <p align="center">
   <img src="img/azure-streaming-demo.png">
@@ -246,11 +252,33 @@ Query CosmosDB with: SELECT * FROM c where c.sender = 'dotnet_core_sdk' and c.ep
 
 ### Query the Messages in CosmosDB
 
+Syntax: https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-getting-started
+
+Count the Documents in a container:
+```
+SELECT VALUE COUNT(1) FROM c
+```
+
+Query just one Document:
+```
+SELECT TOP 1 * FROM c
+```
+
+Query by epoch time sent and sender attributes:
 ```
 select * FROM c where c.epoch >= 1593099980 and c.sender = 'python_kafka_sdk'
 select * FROM c where c.epoch >= 1593099980 and c.sender = 'python_ms_sdk'
 
 select c.id, c.city_name, c.sender FROM c where c.epoch > 1593099980
+```
+
+Spatial/Geo Query, -78.639090, 35.780034 is the North Carolina State Capitol building:
+```
+SELECT * from c WHERE ST_DISTANCE(c.location, {'type': 'Point', 'coordinates':[-78.639090,35.780034]}) < 10000
+
+SELECT c.postal_cd, c.city_name, c.location from c WHERE ST_DISTANCE(c.location, {'type': 'Point', 'coordinates':[-78.639090,35.780034]}) < 10000
+
+SELECT DISTINCT VALUE c.city_name from c WHERE ST_DISTANCE(c.location, {'type': 'Point', 'coordinates':[-78.639090,35.780034]}) < 10000
 ```
 
 <p align="center">

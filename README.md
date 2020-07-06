@@ -45,17 +45,17 @@
 
 Demo app consists of (the solid lines in the diagram above):
 1) Azure Command-Line Interface (CLI) program **az**
-2) Three different EventHub Message Producers
+2) Azure EventHub with Kafka Enabled
+3) Azure Blob Storage for EventHub message Capture
+4) Azure Stream Analytics to Consume to EventHub
+5) Azure CosmosDB - Sink for Azure Stream Analytics
+   - Queries
+   - Geo Queries (GeoJSON)
+6) Azure Datalake Gen2 - Sink for Azure Stream Analytics
+7) Three different EventHub Message Producers
    - Python Kafka Protocol Message Producer
    - Python Native Protocol Message Producer
    - DotNet Core Native Protocol Message Producer
-3) Azure EventHub with Kafka Enabled
-4) Azure Blob Storage for EventHub message Capture
-5) Azure Stream Analytics to Consume to EventHub
-6) Azure CosmosDB - Sink for Azure Stream Analytics
-   - Queries
-   - Geo Queries (GeoJSON)
-7) Azure Datalake Gen2 - Sink for Azure Stream Analytics
 8) (TODO) Azure Databricks - Alternative EventHub stream consumer
 
 ---
@@ -69,6 +69,15 @@ EventHubs and Azure Functions can be **pipelined** for functionality similar to 
 </p>
 
 ### Provisioning the Azure Resources for this Demonstration
+
+You can provision Azure Resources in at least four ways:
+- The Azure Portal Web Application (portal.azure.com)
+- Azure Resource Manager (ARM) templates
+- PowerShell cmdlets
+- Azure Command-Line Interface (CLI) program **az**
+  - See https://docs.microsoft.com/en-us/cli/azure/what-is-azure-cli?view=azure-cli-latest
+
+This demonstration uses the Azure CLI.
 
 See the bash/az scripts in the **automation/az/** directory.
 Edit file **env.sh** per your preferred Azure region, resource group, resource names,

@@ -39,6 +39,10 @@
 
 ## Part 3: Demonstration
 
+<p align="center">
+  <img src="img/azure-streaming-demo.png">
+</p>
+
 Demo app consists of (the solid lines in the diagram above):
 1) Azure Command-Line Interface (CLI) program **az**
 2) Three different EventHub Message Producers
@@ -53,10 +57,6 @@ Demo app consists of (the solid lines in the diagram above):
    - Geo Queries (GeoJSON)
 7) Azure Datalake Gen2 - Sink for Azure Stream Analytics
 8) (TODO) Azure Databricks - Alternative EventHub stream consumer
-
-<p align="center">
-  <img src="img/azure-streaming-demo.png">
-</p>
 
 ---
 

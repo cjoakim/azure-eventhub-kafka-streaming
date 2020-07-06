@@ -107,6 +107,8 @@ Note: This EventHub instance will support **both** types of clients -
 **Kafka API** and the **Microsoft SDKs**.
 
 ```
+    az eventhubs namespace create --help   <-- help content is available for all commands at all levels
+
     az eventhubs namespace create \
         --name $eventhubs_namespace \
         --resource-group $eventhubs_rg \
@@ -118,6 +120,24 @@ Note: This EventHub instance will support **both** types of clients -
         --maximum-throughput-units $eventhubs_max_tu \
         > out/eventhubs_namespace_create.json
 ```
+
+#### More Detail on Azure EventHubs
+
+- Maximum size of Event Hubs event is 256KB (Basic Tier) or 1MB (Standard Tier)
+- The number of **partitions** is specified at creation, up to 32
+- Use Partitions for more downstream/reader parallelism
+- Use a 1:1 correlation between partitions and Throughput Units (TU)
+- A single Throughput Unit (TU) lets you:
+  - Ingress: Up to 1 MB per second or 1000 events per second (whichever comes first)
+  - Egress: Up to 2 MB per second or 4096 events per second
+- [Features](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features)
+- [Partition Keys](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-publishers)
+- [Partitions](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#partitions)
+- [Consumer Groups](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-consumers)
+- [Throughput Units](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-scalability)
+- [Scaling](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-scalability)
+- [Auto Inflate](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-auto-inflate)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/event-hubs/)
 
 #### CosmosDB Time-to-Live
 

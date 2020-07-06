@@ -174,10 +174,17 @@ AZURE_STREAMPOC_EVENTHUB_HUBNAME=dev
 
 #### Create Python Virtual Environment
 
+Linux and MacOS:
 ```
 $ cd py
-$ ./venv.sh create
+$ ./venv.sh create 
 $ source bin/activate
+```
+
+Windows:
+```
+$ cd py
+$ .\venv.ps1
 ```
 
 #### Send messages to EventHub using the Kafka Producer API
@@ -248,7 +255,6 @@ Sending message batch of 10
 The batch of messages has been sent
 Query CosmosDB with: SELECT * FROM c where c.sender = 'dotnet_core_sdk' and c.epoch >= 1593718632
 ```
-
 
 ### Query the Messages in CosmosDB
 

@@ -321,7 +321,11 @@ SELECT DISTINCT VALUE c.city_name from c WHERE ST_DISTANCE(c.location, {'type': 
 </p>
 
 
-### Use Azure Storage to see the Data - Blobs, DataLake, and CosmosDB
+### Use the Desktop Azure Storage Explorer App to see the Data
+
+Similar to Windows Explorer - but for Blobs, DataLake, and CosmosDB.  You can upload, download, delete.
+
+[Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
 
 <p align="center">
   <img src="img/azure-storage-explorer.png">

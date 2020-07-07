@@ -321,6 +321,12 @@ SELECT DISTINCT VALUE c.city_name from c WHERE ST_DISTANCE(c.location, {'type': 
 </p>
 
 
+### Use Azure Storage to see the Data - Blobs, DataLake, and CosmosDB
+
+<p align="center">
+  <img src="img/azure-storage-explorer.png">
+</p>
+
 ### Display the Messages and Schema in an EventHub Avro file
 
 Download an avro file from Azure Blob Storage (i.e. - data/54.avro).

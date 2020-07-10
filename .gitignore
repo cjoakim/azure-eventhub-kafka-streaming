@@ -15,7 +15,7 @@ py/man/
 py/share/
 py/tmp/
 py/LICENSE.txt
-
+**/pyvenv.cfg
 py/Scripts/
 
 tmp/

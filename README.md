@@ -237,7 +237,7 @@ native EventHub protocol rather than the Kafka protocol.  This uses the **azure-
 library on PyPI.
 
 ```
-$ python eventhub_sdk.py 1 100
+$ python eventhub_sdk.py producer 1 100
 
 ...
 sending message: {"location": {"type": "Point", "coordinates": [-82.5545, 35.6006]}, "postal_cd": "28816", "country_cd": "US", "city_name": "Asheville", "state_abbrv": "NC", "latitude": 35.6006, "longitude": -82.5545, "pk": "28816", "seq": 1, "timestamp": "2020-06-25 15:47:35", "epoch": 1593100055, "sender": "python_ms_sdk"}
